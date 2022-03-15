@@ -30,8 +30,6 @@ namespace EFMigrateExample
     {
         public int BlogId { get; set; }
         public string Url { get; set; }
-
-        public IEnumerable<Post> Posts { get; set; }
     }
 
     public class Post

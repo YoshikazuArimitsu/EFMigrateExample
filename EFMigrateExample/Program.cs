@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFMigrateExample
 {
@@ -7,7 +8,12 @@ namespace EFMigrateExample
     {
         private static void Main()
         {
-            using (var db = new BloggingContext())
+            var options = new DbContextOptionsBuilder<BloggingContext>()
+                                .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                                .Options;
+
+
+            using (var db = new BloggingContext(options))
             {
                 // Note: This sample requires the database to be created before running.
                 Console.WriteLine($"Database path: {db.DbPath}.");

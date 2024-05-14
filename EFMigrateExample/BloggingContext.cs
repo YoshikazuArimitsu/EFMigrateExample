@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,10 +22,16 @@ namespace EFMigrateExample
             DbPath = @"(localdb)\MSSQLLocalDB;Database=SampleDB;Trusted_Connection=True;";
         }
 
+        public BloggingContext(DbContextOptions<BloggingContext> options) : base(options)
+        {
+
+        }
+
+
         // The following configures EF to create a Sqlite database file in the
         // special "local" folder for your platform.
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer($"Data Source={DbPath}");
+        // protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //     => options.UseSqlServer($"Data Source={DbPath}");
     }
 
     public class Blog
